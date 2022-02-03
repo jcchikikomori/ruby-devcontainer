@@ -1,0 +1,9 @@
+# Ignore OS files
+.DS_Store
+
+# Docker secrets
+.devcontainer/secrets/*
+!devcontainer/secrets/.gitinclude
+
+# VSCode
+.vscode/*
