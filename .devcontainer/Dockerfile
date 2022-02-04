@@ -18,6 +18,10 @@ RUN if [ "${NODE_VERSION}" != "none" ]; then su vscode -c "umask 0002 && . /usr/
 # RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
 #     && apt-get -y install --no-install-recommends <your-package-list-here>
 
+# Install git-flow
+RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
+    && apt-get -y install --no-install-recommends git-flow
+
 # Install Ruby 2.5.3
 RUN rvm install 2.5.3 \
     && rvm alias create default 2.5.3
@@ -49,3 +53,7 @@ COPY secrets/database.yml config/database.yml
 
 # Copy Configs (Global)
 COPY secrets/.gitconfig /home/vscode/.gitconfig
+
+# Ignore some files Globally
+RUN echo '.devcontainer/*\n.vscode/*\n' > /home/vscode/.gitignore_global
+RUN su vscode -c "git config --global core.excludesfile /home/vscode/.gitignore_global" 2>&1
