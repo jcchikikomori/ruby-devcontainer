@@ -18,9 +18,9 @@ RUN if [ "${NODE_VERSION}" != "none" ]; then su vscode -c "umask 0002 && . /usr/
 # RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
 #     && apt-get -y install --no-install-recommends <your-package-list-here>
 
-# Install git-flow
+# Install git-flow & postgresql
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
-    && apt-get -y install --no-install-recommends git-flow
+    && apt-get -y install --no-install-recommends git-flow postgresql
 
 # Install Ruby 2.5.3
 RUN rvm install 2.5.3 \
